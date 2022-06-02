@@ -14,5 +14,12 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "@algoz098/vue-player": "^0.4.3",
+        "vue": "^2.6.10",
+        "vue-image-lightbox-carousel": "^1.0.7",
+        "vue-loader": "^15.7.0",
+        "vue-template-compiler": "^2.6.10"
     }
 }

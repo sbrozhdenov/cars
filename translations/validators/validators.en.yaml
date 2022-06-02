@@ -1,0 +1,6 @@
+user.name.not_blank: Моля въведете име!
+user.email.not_blank: Моля въведете име!
+user.phone.not_blank: Моля въведете телефон!
+user.password.not_blank: Моля въведете парола!
+user.email.email: Имейла не валиден!
+user.email.password: Паролите не съвпадат!

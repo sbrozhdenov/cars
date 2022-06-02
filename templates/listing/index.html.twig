@@ -1,0 +1,104 @@
+{% extends 'admin-base.html.twig' %}
+
+{% block title %}
+	Предложение
+{% endblock %}
+
+{% block body %}
+
+	<div class="container container-survey">
+		<div class="row custom-row" id="app">
+			<div class="col-md-2">
+				<div class="sidebar">
+					<a class="active" href="#home">Моите предложениия</a>
+					<a href="#news">Заяква за търсене</a>
+					<a href="#about">Изход</a>
+				</div>
+			</div>
+			{% for data in listing %}
+				<div class="col-md-10">
+					<div class="custom-card">
+
+						<vue-image-lightbox-carousel></vue-image-lightbox-carousel>
+						<div class="container">
+							<div class="table-responsive table-striped">
+								<table class="table">
+									<thead>
+										<tr>
+											<th class="type-car" scope="col">Марка</th>
+											<th class="type-car" scope="col type-car">Модел</th>
+											<th class="type-car" scope="col type-car">Година</th>
+											<th class="type-car" scope="col type-car">Километраж</th>
+											<th class="type-car" scope="col type-car">Скоростна кутия</th>
+											<th class="type-car" scope="col type-car">Тип гориво</th>
+											<th class="type-car" scope="col type-car">Брой собственици</th>
+											<th class="type-car" scope="col type-car">Конски сили</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="type-car" scope="col">
+												{{ data.mark }}
+											</td>
+											<td class="type-car" scope="col type-car">{{ data.model }}</td>
+											<td class="type-car" scope="col type-car">{{ data.model }}</td>
+											<td class="type-car" scope="col type-car">{{ data.year }}</td>
+											<td class="type-car" scope="col type-car">{{ data.gearBox() }}</td>
+											<td class="type-car" scope="col type-car">{{ data.fuelf }}</td>
+											<td class="type-car" scope="col type-car">{{ data.owners }}</td>
+											<td class="type-car" scope="col type-car">{{ data.horsePower() }}</td>
+										</tr>
+
+									</tbody>
+								</table>
+								<time-component start="124"></time-component>
+
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+			<div class="col-md-10">
+				<div class="custom-card">
+
+					<vue-image-lightbox-carousel></vue-image-lightbox-carousel>
+					<div class="container">
+						<div class="table-responsive table-striped">
+							<table class="table">
+								<thead>
+									<tr>
+										<th class="type-car" scope="col">Марка</th>
+										<th class="type-car" scope="col type-car">Модел</th>
+										<th class="type-car" scope="col type-car">Година</th>
+										<th class="type-car" scope="col type-car">Километраж</th>
+										<th class="type-car" scope="col type-car">Скоростна кутия</th>
+										<th class="type-car" scope="col type-car">Тип гориво</th>
+										<th class="type-car" scope="col type-car">Брой собственици</th>
+										<th class="type-car" scope="col type-car">Конски сили</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Mark</td>
+										<td>Otto</td>
+										<td>@mdo</td>
+										<td>Mark</td>
+										<td>Otto</td>
+										<td>@mdo</td>
+										<td>Otto</td>
+										<td>@mdo</td>
+									</tr>
+
+								</tbody>
+							</table>
+							<button type="button" class="btn btn-danger my-button">12:00</button>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endblock %}

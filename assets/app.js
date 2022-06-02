@@ -10,3 +10,14 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
+
+import Vue from 'vue';
+import HeaderComponent from './components/HeaderComponent'
+import VueImageLightboxCarousel from './components/VueImageLightboxCarousel'
+import TimeComponent from './components/TimeComponent'
+import vuePlayer from '@algoz098/vue-player'
+
+new Vue({
+    el: '#app',
+    components: {HeaderComponent, vuePlayer, VueImageLightboxCarousel, TimeComponent}
+})

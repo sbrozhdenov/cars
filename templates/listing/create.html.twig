@@ -1,0 +1,77 @@
+{% extends 'admin-base.html.twig' %}
+
+{% block title %}Заявка за търсене на автомобил
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="login-background-image" style="background-image: url(assets/img/hero.jpg);"></div>
+		<div class="row">
+			<div class="col-md-10 ml-md-auto">
+				<div class="card bg-light mb-3 mt-5" style="width: 70%;">
+					<div class="card-body" id="registration">
+						<div class="card-header mb-3">Заявка за търсене на автомобил</div>
+						{{ form_start(form) }}
+						<div class="form_group">
+							<div class="col-md-12 mb-3 name">
+								{{ form_row(form.mark, {'attr': {'class': 'form-control'},  'label': 'Марка' }) }}
+							</div>
+
+						</div>
+
+						<div class="form_group">
+							<div class="col-md-12 mb-3 name">
+								{{ form_row(form.model, {'attr': {'class': 'form-control'},  'label': 'Модел' }) }}
+							</div>
+
+						</div>
+
+						<div class="form_group">
+							<div class="col-md-12 mb-3 name">
+								{{ form_row(form.odometar, {'attr': {'class': 'form-control'},  'label': 'Километраж' }) }}
+							</div>
+
+						</div>
+
+						<div class="form_group">
+							<div class="col-md-12 mb-3 name">
+								{{ form_row(form.gear_box, {'attr': {'class': 'form-control'},  'label': 'Скоростна кутия' }) }}
+							</div>
+
+						</div>
+
+						<div class="form_group">
+							<div class="col-md-12 mb-3 name">
+								{{ form_row(form.fuelf, {'attr': {'class': 'form-control'},  'label': 'Гориво' }) }}
+							</div>
+
+						</div>
+
+						<div class="form_group">
+							<div class="col-md-12 mb-3 name">
+								{{ form_row(form.owners, {'attr': {'class': 'form-control'},  'label': 'Брой собсвеници' }) }}
+							</div>
+
+						</div>
+
+						<div class="form_group">
+							<div class="col-md-12 mb-3 name">
+								{{ form_row(form.year, {'attr': {'class': 'form-control'},  'label': 'Година' }) }}
+							</div>
+
+						</div>
+
+						<div class="form_group">
+							<div class="col-md-12 mb-3 name">
+								{{ form_row(form.horse_power, {'attr': {'class': 'form-control'},  'label': 'Конски сили' }) }}
+							</div>
+
+						</div>
+						{{ form_end(form) }}
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
