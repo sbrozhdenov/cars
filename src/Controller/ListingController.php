@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Listing;
+use App\Entity\User;
 use App\Form\ListingType;
 use App\Repository\ListingRepository;
 use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\HttpFoundation\Session\Session;
 use MobileDetectBundle\DeviceDetector\MobileDetectorInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -22,7 +24,7 @@ class ListingController extends AbstractController
     {
         $user = $this->getUser();
         $session = new Session();
-        //dd($user);
+        $pathData = [];
 
         $listing = $listingRepository->findBy(
             []
@@ -30,10 +32,11 @@ class ListingController extends AbstractController
 
         foreach ($listing as $data) {
             foreach ($data->getPath() as $path) {
-                $data->setPath([["path" => 'uploads/'.$path, "caption" => $data->getMark()]]);
+                $pathData[] = ["path" => 'uploads/'.$path, "caption" => $data->getMark()];
             }
+            $data->setPath($pathData);
         }
-    
+ 
         return $this->render('listing/index.html.twig', [
             'listing' => $listing,
             "notice" => $session->get('notice', null)
@@ -46,12 +49,17 @@ class ListingController extends AbstractController
      *
      * @Route("listing/create", name="listing_create", methods={"GET","HEAD", "POST"})
      */
-    public function createAction(Request $request, MobileDetectorInterface $mobileDetector)
+    public function createAction(Request $request, MobileDetectorInterface $mobileDetector, EntityManagerInterface $entityManager)
     {
         $listing = new Listing();
         $form = $this->createForm(ListingType::class, $listing);
+        $repository = $entityManager->getRepository(User::class);
+        $user = $repository->findOneBy(['email' => $request->request->get('email')]);
 
         $form->handleRequest($request);
+
+        $session = new Session();
+        $session->remove('notice');
        
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -70,6 +78,7 @@ class ListingController extends AbstractController
                 );
             }
             $listing->setPath($paths);
+            $listing->setUser($user);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($listing);

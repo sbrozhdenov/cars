@@ -426,3 +426,8 @@ header nav li:last-child{
     bottom: 0;
     width: 80%;
 }
+
+.flex-container {
+	display: flex;
+	flex-direction: column;
+}

@@ -15,55 +15,56 @@
 					<a href="#about">Изход</a>
 				</div>
 			</div>
+			<div class="flex-container">
+				{% for data in listing %}
+					<div class="col-md-10">
+						<div class="custom-card">
 
-			{% for data in listing %}
-				<div class="col-md-10">
-					<div class="custom-card">
+							<vue-image-lightbox-carousel images="{{ data.path|json_encode()}}"></vue-image-lightbox-carousel>
+							<div class="container">
+								<div class="table-responsive table-striped">
+									<table class="table">
+										<thead>
+											<tr>
+												<th class="type-car" scope="col">Марка</th>
+												<th class="type-car" scope="col type-car">Модел</th>
+												<th class="type-car" scope="col type-car">Година</th>
+												<th class="type-car" scope="col type-car">Километраж</th>
+												<th class="type-car" scope="col type-car">Скоростна кутия</th>
+												<th class="type-car" scope="col type-car">Тип гориво</th>
+												<th class="type-car" scope="col type-car">Брой собственици</th>
+												<th class="type-car" scope="col type-car">Конски сили</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="type-car" scope="col">
+													{{ data.mark }}
+												</td>
+												<td class="type-car" scope="col type-car">{{ data.model }}</td>
+												<td class="type-car" scope="col type-car">{{ data.model }}</td>
+												<td class="type-car" scope="col type-car">{{ data.year }}</td>
+												<td class="type-car" scope="col type-car">{{ data.gearBox() }}</td>
+												<td class="type-car" scope="col type-car">{{ data.fuelf }}</td>
+												<td class="type-car" scope="col type-car">{{ data.owners }}</td>
+												<td class="type-car" scope="col type-car">{{ data.horsePower() }}</td>
+											</tr>
 
-						<vue-image-lightbox-carousel images="{{ data.path|json_encode()}}"></vue-image-lightbox-carousel>
-						<div class="container">
-							<div class="table-responsive table-striped">
-								<table class="table">
-									<thead>
-										<tr>
-											<th class="type-car" scope="col">Марка</th>
-											<th class="type-car" scope="col type-car">Модел</th>
-											<th class="type-car" scope="col type-car">Година</th>
-											<th class="type-car" scope="col type-car">Километраж</th>
-											<th class="type-car" scope="col type-car">Скоростна кутия</th>
-											<th class="type-car" scope="col type-car">Тип гориво</th>
-											<th class="type-car" scope="col type-car">Брой собственици</th>
-											<th class="type-car" scope="col type-car">Конски сили</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td class="type-car" scope="col">
-												{{ data.mark }}
-											</td>
-											<td class="type-car" scope="col type-car">{{ data.model }}</td>
-											<td class="type-car" scope="col type-car">{{ data.model }}</td>
-											<td class="type-car" scope="col type-car">{{ data.year }}</td>
-											<td class="type-car" scope="col type-car">{{ data.gearBox() }}</td>
-											<td class="type-car" scope="col type-car">{{ data.fuelf }}</td>
-											<td class="type-car" scope="col type-car">{{ data.owners }}</td>
-											<td class="type-car" scope="col type-car">{{ data.horsePower() }}</td>
-										</tr>
+										</tbody>
+									</table>
 
-									</tbody>
-								</table>
 
+								</div>
+								<flip-countdown deadline="{{data.CreatedAt.modify('+ 24 hour').format('Y-m-d H:i:s')}}" :showdays="false"></flip-countdown>
 
 							</div>
-							<flip-countdown deadline="{{data.CreatedAt.modify('+ 24 hour').format('Y-m-d H:i:s')}}" :showdays="false"></flip-countdown>
 
 						</div>
 
+
 					</div>
-
-
-				</div>
-			{% endfor %}
+				{% endfor %}
+			</div>
 
 			{% if app.session.has('notice') %}
 				<div id="notice">

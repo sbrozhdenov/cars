@@ -4,7 +4,7 @@
     style="text-align: center"
   >
     <a @click="openLightbox">
-      <img :src="myImage[0].path" alt="Avatar" style="width: 100%" />
+      <img class="custom-image" :src="myImage[0].path" alt="Avatar" />
     </a>
 
     <vue-image-lightbox-carousel
@@ -69,5 +69,8 @@ export default {
 }
 .modal-mask {
   padding-top: 70px;
+}
+.custom-image {
+  max-width: 40%;
 }
 </style>

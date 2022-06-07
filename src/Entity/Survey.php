@@ -57,6 +57,12 @@ class Survey
      */
     private $end_date;
 
+    /**
+     * Many listing have one user. This is the owning side.
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="survey")
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +160,18 @@ class Survey
     public function setEndDate(string $end_date): self
     {
         $this->end_date = $end_date;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

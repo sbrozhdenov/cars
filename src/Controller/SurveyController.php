@@ -34,6 +34,7 @@ class SurveyController extends AbstractController
         $survey->setBodyType($request->request->get('type'));
         $survey->setCreatedAt($request->request->get('from'));
         $survey->setEndDate($request->request->get('to'));
+        $survey->setUser($this->getUser());
         $entityManager->persist($survey);
         $entityManager->flush();
         $session->set('notice', 'Ще изпратим скоро най-добрата оферта! Благодаря за запитването!');
