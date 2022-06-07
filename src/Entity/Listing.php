@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ListingRepository;
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -67,6 +68,12 @@ class Listing
      * @ORM\Column(type="string", length=255)
      */
     private $year;
+
+    /**
+     * Many listing have one user. This is the owning side.
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="listing")
+     */
+    private $user;
 
     public function __construct()
     {
@@ -186,7 +193,7 @@ class Listing
         return $this;
     }
 
-    public function getCteatedAt()
+    public function getCreatedAt()
     {
         return $this->created_at;
     }
@@ -196,6 +203,18 @@ class Listing
         if (!$this->created_at) {
             $this->created_at = new \DateTime();
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

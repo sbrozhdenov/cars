@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Security\LoginFormAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use MobileDetectBundle\DeviceDetector\MobileDetectorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -22,7 +24,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/registration", name="registration")
      */
-    public function index(Request $request, MobileDetectorInterface $mobileDetector)
+    public function index(Request $request, MobileDetectorInterface $mobileDetector, UserAuthenticatorInterface $authenticator, LoginFormAuthenticator $formAuthenticator)
     {
         $user = new User();
 
@@ -42,7 +44,11 @@ class RegistrationController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('survey');
+            return $authenticator->authenticateUser(
+                $user,
+                $formAuthenticator,
+                $request
+            );
         }
 
         if ($mobileDetector->isMobile()) {

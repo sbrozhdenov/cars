@@ -20,6 +20,8 @@
         "vue": "^2.6.10",
         "vue-image-lightbox-carousel": "^1.0.7",
         "vue-loader": "^15.7.0",
-        "vue-template-compiler": "^2.6.10"
+        "vue-template-compiler": "^2.6.10",
+        "vue2-flip-countdown": "^0.12.1",
+        "vuejs-countdown": "^0.2.1"
     }
 }

@@ -40,6 +40,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $phone;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $roles;
+
 
     /**
      * @var string The hashed password

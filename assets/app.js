@@ -12,12 +12,11 @@ import './styles/app.css';
 import './bootstrap';
 
 import Vue from 'vue';
-import HeaderComponent from './components/HeaderComponent'
 import VueImageLightboxCarousel from './components/VueImageLightboxCarousel'
-import TimeComponent from './components/TimeComponent'
+import FlipCountdown from 'vue2-flip-countdown'
 import vuePlayer from '@algoz098/vue-player'
 
 new Vue({
     el: '#app',
-    components: {HeaderComponent, vuePlayer, VueImageLightboxCarousel, TimeComponent}
+    components: {vuePlayer, VueImageLightboxCarousel, FlipCountdown}
 })

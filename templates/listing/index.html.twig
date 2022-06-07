@@ -15,11 +15,12 @@
 					<a href="#about">Изход</a>
 				</div>
 			</div>
+
 			{% for data in listing %}
 				<div class="col-md-10">
 					<div class="custom-card">
 
-						<vue-image-lightbox-carousel></vue-image-lightbox-carousel>
+						<vue-image-lightbox-carousel images="{{ data.path|json_encode()}}"></vue-image-lightbox-carousel>
 						<div class="container">
 							<div class="table-responsive table-striped">
 								<table class="table">
@@ -51,54 +52,31 @@
 
 									</tbody>
 								</table>
-								<time-component start="124"></time-component>
+
 
 							</div>
-
+							<flip-countdown deadline="{{data.CreatedAt.modify('+ 24 hour').format('Y-m-d H:i:s')}}" :showdays="false"></flip-countdown>
 
 						</div>
+
 					</div>
+
+
 				</div>
 			{% endfor %}
-			<div class="col-md-10">
-				<div class="custom-card">
 
-					<vue-image-lightbox-carousel></vue-image-lightbox-carousel>
-					<div class="container">
-						<div class="table-responsive table-striped">
-							<table class="table">
-								<thead>
-									<tr>
-										<th class="type-car" scope="col">Марка</th>
-										<th class="type-car" scope="col type-car">Модел</th>
-										<th class="type-car" scope="col type-car">Година</th>
-										<th class="type-car" scope="col type-car">Километраж</th>
-										<th class="type-car" scope="col type-car">Скоростна кутия</th>
-										<th class="type-car" scope="col type-car">Тип гориво</th>
-										<th class="type-car" scope="col type-car">Брой собственици</th>
-										<th class="type-car" scope="col type-car">Конски сили</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Mark</td>
-										<td>Otto</td>
-										<td>@mdo</td>
-										<td>Mark</td>
-										<td>Otto</td>
-										<td>@mdo</td>
-										<td>Otto</td>
-										<td>@mdo</td>
-									</tr>
-
-								</tbody>
-							</table>
-							<button type="button" class="btn btn-danger my-button">12:00</button>
-						</div>
-
-
+			{% if app.session.has('notice') %}
+				<div id="notice">
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						{{ app.session.get('notice') }}
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
 				</div>
-			</div>
+
+
+			{% endif %}
+
 		</div>
 	{% endblock %}

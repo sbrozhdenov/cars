@@ -18,14 +18,12 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils, MobileDetectorInterface $mobileDetector): Response
     {
         $user = new User();
-        $form = $this->createForm(UserRegisterType::class, $user);
+        $error = $authenticationUtils->getLastAuthenticationError();
         
         if ($mobileDetector->isMobile()) {
-            return $this->render('security/login-mobile.html.twig', [
-                'form' => $form->createView(),
-            ]);
+            return $this->render('security/login-mobile.html.twig', [ 'error' => $error]);
         }
-        return $this->render('security/login.html.twig', ['form' => $form->createView()]);
+        return $this->render('security/login.html.twig', [ 'error' => $error]);
     }
 
     /**

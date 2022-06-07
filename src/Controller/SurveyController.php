@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Survey;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,21 +16,27 @@ class SurveyController extends AbstractController
      */
     public function index(Request $request)
     {
-        $companies = [
-            'Apple' => '$1.16 trillion USD',
-            'Samsung' => '$298.68 billion USD',
-            'Microsoft' => '$1.10 trillion USD',
-            'Alphabet' => '$878.48 billion USD',
-            'Intel Corporation' => '$245.82 billion USD',
-            'IBM' => '$120.03 billion USD',
-            'Facebook' => '$552.39 billion USD',
-            'Hon Hai Precision' => '$38.72 billion USD',
-            'Tencent' => '$3.02 trillion USD',
-            'Oracle' => '$180.54 billion USD',
-        ];
+        return $this->render('survey/index.html.twig');
+    }
 
-        return $this->render('survey/index.html.twig', [
-            'companies' => $companies,
-        ]);
+    /**
+     * @Route("/store", name="app_survey")
+     */
+    public function store(Request $request, EntityManagerInterface $entityManager)
+    {
+        $session = new Session();
+        $survey = new Survey();
+        $survey->setMark($request->request->get('mark'));
+        $survey->setModel($request->request->get('model'));
+        $survey->setEng($request->request->get('engine'));
+        $survey->setGearBox($request->request->get('gear_box'));
+        $survey->setHorsePower($request->request->get('horse_power'));
+        $survey->setBodyType($request->request->get('type'));
+        $survey->setCreatedAt($request->request->get('from'));
+        $survey->setEndDate($request->request->get('to'));
+        $entityManager->persist($survey);
+        $entityManager->flush();
+        $session->set('notice', 'Ще изпратим скоро най-добрата оферта! Благодаря за запитването!');
+        return $this->redirectToRoute('listing');
     }
 }

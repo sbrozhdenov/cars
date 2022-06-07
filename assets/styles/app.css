@@ -412,3 +412,17 @@ header nav li:last-child{
 .modal-mask {
 	padding-top: 70px !important;
 }
+
+.nav-link {
+	font-size: 18px;
+}
+
+.flip-clock__slot {
+	display: none !important;
+}
+
+#notice {
+	position: fixed;
+    bottom: 0;
+    width: 80%;
+}
