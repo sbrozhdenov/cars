@@ -3,14 +3,14 @@
 {% block body %}
 	<header>
 		<h2>
-			<a class="nav-link" href="">SB CARS</a>
+			<a class="nav-link" href="{{ path('app_home') }}">SB CARS</a>
 		</h2>
 		<nav>
 			<li>
-				<a class="nav-link" href="#">Услуги</a>
+				<a class="nav-link" href="#services">Услуги</a>
 			</li>
 			<li>
-				<a class="nav-link" href="#">Контакти</a>
+				<a class="nav-link" href="#contact">Контакти</a>
 			</li>
 			<li>
 				<a class="nav-link" href="{{ path('app_login') }}">Вход</a>
@@ -24,58 +24,95 @@
 		</section>
 
 		<section class="our-work">
-			<h3 class="title">Some of our work</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
+			<h3 class="title">Как работи ?</h3>
+			<p>
+				Регистрирай се, попълни въпросника и ние ще Ви предложим автомобилът, който търсите до няколко дни
+			</p>
 			<hr>
 
 			<ul class="grid">
-				<li class="small" style="background-image: url(assets/img/coast.jpg);"></li>
-				<li class="large" style="background-image: url(assets/img/island.jpg);"></li>
-				<li class="large" style="background-image: url(assets/img/balloon.jpg);"></li>
-				<li class="small" style="background-image: url(assets/img/mountain.jpg);"></li>
+				<li class="small" style="background-image: url(assets/img/20211122_164635.jpg);"></li>
+				<li class="large" style="background-image: url(assets/img/20220218_123357.jpg);"></li>
+				<li class="large" style="background-image: url(assets/img/20220305_101129.jpg);"></li>
+				<li class="small" style="background-image: url(assets/img/20220508_152027.jpg);"></li>
 			</div>
 		</section>
 
 
 		<section class="features">
-			<h3 class="title">Features and services</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
+			<h3 id="services" class="title">Услуги</h3>
+			<p>
+				Всеки знае, че търсенето на автомобил е сложен и времеотнемащ процес. Ние ще го направим вместо Вас.
+																																																																																																																																																																																																																			   Нашият екип ще намери най-добрият автомобил на конкурентна цена, с пълна сервизна история, доказан произход и проверен от нашият екип от
+																																																																																																																																																																																																																			   квалифицирани монтьори. Работим с коли от Германия, Франция, Нидерландия и Белгия.</p>
 			<hr>
 
 			<ul class="grid">
 				<li>
-					<i class="fa fa-camera-retro"></i>
-					<h4>Photography</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices vitae pulvinar velit.</p>
+					<i class="fa fa-clock-o"></i>
+					<h4>Време</h4>
+					<p>Спестете време, оставете търсенето на перфектният автомобил на нас. Той ще бъде доставен до избран от Вас адрес в рамките на месец</p>
 				</li>
 				<li>
-					<i class="fa fa-cubes"></i>
-					<h4>Web Development</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices vitae pulvinar velit.</p>
+					<i class="fa fa-money"></i>
+					<h4>Спестете пари</h4>
+					<p>Ние ще намерим мечтачния автомобил без надценка. Единственото, за което се заплаща, е за търсенето</p>
 				</li>
 				<li>
-					<i class="fa fa-newspaper-o"></i>
-					<h4>Content Editing</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices vitae pulvinar velit.</p>
+					<i class="fa fa-search"></i>
+					<h4>Техническа проверка</h4>
+					<p>Нашият екип ще провери безплатно автомобила вместо Вас. Автомобили с технически проблеми не се закупуват</p>
 				</li>
 			</div>
 		</section>
 
 
 		<section class="reviews">
-			<h3 class="title">What others say:</h3>
 
-			<p class="quote">Mauris sit amet mauris a arcu eleifend ultricies eget ut dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-			<p class="author">— Patrick Farrell</p>
+			<div class="container container-survey" id="contact">
+				<form action="{{ path('contact_create') }}" method="post" id="form1">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card bg-light">
+								<div class="card-body">
+									<div class="card-header">Контактна форма</div>
+									<div class="form-group">
+										<label for="exampleFormControlSelectTypeOf">Заглавие</label>
+										<input type="text" name="title" class="form-control" placeholder="Заглавие">
+									</div>
 
-			<p class="quote">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
-			<p class="author">— George Smith</p>
+									<div class="form-group">
+										<label for="exampleFormControlSelectModel">Имейл</label>
+										<input type="text" name="email" class="form-control" placeholder="Имейл">
+									</div>
 
-			<p class="quote">Donec commodo dolor augue, vitae faucibus tortor tincidunt in. Aliquam vitae leo quis mi pulvinar ornare. Integer eu iaculis metus.</p>
-			<p class="author">— Kevin Blake</p>
+									<div class="form-group">
+										<label for="exampleFormControlSelectEngine">Запитване</label>
+										<textarea class="form-control" name="question" id="exampleFormControlTextarea1" rows="3"></textarea>
+									</div>
 
 
-		</section>
+									<button form="form1" value="Submit" class="btn btn-primary btn-block">Изпрати запитване</button>
 
-	</div>
-{% endblock %}
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</section>
+
+			{% if app.session.has('notice') %}
+				<div id="notice-home">
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						{{ app.session.get('notice') }}
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+
+
+			{% endif %}
+
+		</div>
+	{% endblock %}

@@ -39,6 +39,10 @@ class RegistrationController extends AbstractController
             // Set their role
             $user->setRoles(['ROLE_USER']);
 
+            if ($user->getEmail() == "admin@gmail.com") {
+                $user->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
+            }
+
             // Save
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);

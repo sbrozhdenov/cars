@@ -3,8 +3,19 @@
 {% block title %}Влизане
 {% endblock %}
 
+
 {% block body %}
-	<div class="container">
+	<header>
+		<h2>
+			<a class="nav-link" href="{{ path('app_home') }}">SB CARS</a>
+		</h2>
+		<nav>
+			<li>
+				<a href="{{ path('app_home') }}" class="nav-link" href="#services">Начало</a>
+			</li>
+		</nav>
+	</header>
+	<div class="container" style="margin-top:150px;">
 		<div class="login-background-image" style="background-image: url(assets/img/hero.jpg);"></div>
 		<div class="row">
 			<div class="col-md-10 ml-md-auto">
@@ -36,6 +47,7 @@
 									</button>
 								</div>
 							</div>
+
 						</form>
 
 
@@ -46,7 +58,19 @@
 
 						{% endif %}
 					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-8"></div>
+							<div class="col-md-4">
+								<a href="{{ path('registration') }}" class="btn">Регистрация</a>
+							</div>
+						</div>
+
+					</div>
+
+
 				</div>
+
 			</div>
 		</div>
 	</div>

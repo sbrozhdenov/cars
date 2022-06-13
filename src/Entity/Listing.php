@@ -71,7 +71,8 @@ class Listing
 
     /**
      * Many listing have one user. This is the owning side.
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="listing")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="listings")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 

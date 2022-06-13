@@ -429,5 +429,15 @@ header nav li:last-child{
 
 .flex-container {
 	display: flex;
+	padding-top: 10px;
 	flex-direction: column;
+}
+
+#move {
+	position: relative;
+	top: 15px;
+}
+
+.vue-video-player {
+	width: 70% !important;
 }

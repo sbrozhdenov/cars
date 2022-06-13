@@ -4,7 +4,23 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
+	<header>
+		<h2>
+			<a class="nav-link" href="{{ path('app_home') }}">SB CARS</a>
+		</h2>
+		<nav>
+			<li>
+				<a class="nav-link" href="#">Услуги</a>
+			</li>
+			<li>
+				<a class="nav-link" href="#">Контакти</a>
+			</li>
+			<li>
+				<a class="nav-link" href="{{ path('app_login') }}">Вход</a>
+			</li>
+		</nav>
+	</header>
+	<div class="container" style="margin-top:70px;">
 		<div class="login-background-image" style="background-image: url(assets/img/hero.jpg);"></div>
 		<div class="row">
 			<div class="col-md-10 ml-md-auto">

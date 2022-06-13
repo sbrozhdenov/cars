@@ -1,0 +1,43 @@
+{% extends 'admin-base.html.twig' %}
+
+{% block title %}
+	Предложение
+{% endblock %}
+
+{% block body %}
+
+	<div class="container container-survey">
+		<div class="row custom-row" id="app">
+			<div class="col-md-2">
+				<div class="sidebar">
+					<a class="active" href="{{ path('listing') }}">Автомобили</a>
+					<a href="{{ path('survey') }}">Заяква за търсене</a>
+					<a href="{{ path('app_logout') }}">Изход</a>
+				</div>
+			</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Email</th>
+						<th scope="col">Name</th>
+						<th scope="col">View</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for data in users %}
+						<tr>
+							<th scope="row">{{data.id}}</th>
+							<td>{{data.email}}</td>
+							<td>{{data.name}}</td>
+							<td>
+								<a href="{{ path('app_admin_show', {id: data.id}) }}">view</a>
+							</td>
+						</tr>
+					{% endfor %}
+
+				</tbody>
+			</tbody>
+		</table>
+	</div>
+</div>{% endblock %}

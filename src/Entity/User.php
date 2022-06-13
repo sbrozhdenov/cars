@@ -4,7 +4,10 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -52,6 +55,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Assert\NotBlank(message="user.password.not_blank")
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Listing", mappedBy="user", cascade={"persist"})
+     */
+    protected $listings;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Survey", mappedBy="user", cascade={"persist"})
+     */
+    protected $surveys;
+
+    public function __construct()
+    {
+        $this->listings = new ArrayCollection();
+        $this->surveys = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -165,5 +184,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection|Listing[]
+     */
+    public function getListings()
+    {
+        return $this->listings;
+    }
+
+    /**
+     * @return Collection|Listing[]
+     */
+    public function getSurveys()
+    {
+        return $this->surveys;
     }
 }

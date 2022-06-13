@@ -20,7 +20,6 @@
 
 <script>
 import VueImageLightboxCarousel from "vue-image-lightbox-carousel";
-
 export default {
   name: "app",
   props: {
@@ -42,7 +41,7 @@ export default {
       this.$refs.lightbox.showImage(1);
     },
     changeImage(index) {
-      if (index + 1 == Object.keys(this.myImage).length) {
+      if (index == Object.keys(this.myImage).length) {
         setTimeout((this.showLightbox = false), 20000);
       }
     },
@@ -63,7 +62,6 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-
 .vue-lightbox-modal-image {
   padding-top: 150px;
 }

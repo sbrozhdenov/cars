@@ -7,6 +7,7 @@ use App\Entity\Listing;
 use App\Entity\User;
 use App\Form\ListingType;
 use App\Repository\ListingRepository;
+use App\Repository\UserRepository;
 use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -20,23 +21,21 @@ class ListingController extends AbstractController
     /**
      * @Route("/listing", name="listing")
      */
-    public function index(Request $request, ListingRepository $listingRepository)
+    public function index(Request $request, ListingRepository $listingRepository, UserRepository $userRepository)
     {
         $user = $this->getUser();
         $session = new Session();
         $pathData = [];
-
-        $listing = $listingRepository->findBy(
-            []
-        );
-
+        $user = $userRepository->find($user->getId());
+        $listing = $user->getListings()->getValues();
+ 
         foreach ($listing as $data) {
             foreach ($data->getPath() as $path) {
                 $pathData[] = ["path" => 'uploads/'.$path, "caption" => $data->getMark()];
             }
             $data->setPath($pathData);
         }
- 
+        
         return $this->render('listing/index.html.twig', [
             'listing' => $listing,
             "notice" => $session->get('notice', null)
