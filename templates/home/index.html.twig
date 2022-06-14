@@ -20,7 +20,7 @@
 	<div id="app">
 		<section class="hero">
 			<div class="background-image" style="background-image: url(assets/img/hero.jpg);"></div>
-			<vue-player src="http://techslides.com/demos/sample-videos/small.mp4"></vue-player>
+			<vue-player-component url="{{ asset('assets/img/video.mp4') }}"></vue-player-component>
 		</section>
 
 		<section class="our-work">
@@ -43,15 +43,21 @@
 			<h3 id="services" class="title">Услуги</h3>
 			<p>
 				Всеки знае, че търсенето на автомобил е сложен и времеотнемащ процес. Ние ще го направим вместо Вас.
-																																																																																																																																																																																																																			   Нашият екип ще намери най-добрият автомобил на конкурентна цена, с пълна сервизна история, доказан произход и проверен от нашият екип от
-																																																																																																																																																																																																																			   квалифицирани монтьори. Работим с коли от Германия, Франция, Нидерландия и Белгия.</p>
+																		       Нашият екип ще намери най-добрият автомобил
+																				на конкурентна цена, с пълна сервизна история,
+																				доказан произход и проверен от квалифицирани
+																				монтьори.
+			</p>
+
+
 			<hr>
 
 			<ul class="grid">
 				<li>
 					<i class="fa fa-clock-o"></i>
 					<h4>Време</h4>
-					<p>Спестете време, оставете търсенето на перфектният автомобил на нас. Той ще бъде доставен до избран от Вас адрес в рамките на месец</p>
+					<p>Оставете търсенето на перфектния автомобил
+																		на нас.</p>
 				</li>
 				<li>
 					<i class="fa fa-money"></i>
@@ -61,58 +67,60 @@
 				<li>
 					<i class="fa fa-search"></i>
 					<h4>Техническа проверка</h4>
-					<p>Нашият екип ще провери безплатно автомобила вместо Вас. Автомобили с технически проблеми не се закупуват</p>
+					<p>Автобомилът се проверява безплатно на място 
+												вместо Вас</p>
 				</li>
+			</div>
+		</p>
+	</section>
+
+
+	<section class="reviews">
+
+		<div class="container container-survey" id="contact">
+			<form action="{{ path('contact_create') }}" method="post" id="form1">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card bg-light">
+							<div class="card-body">
+								<div class="card-header">Контактна форма</div>
+								<div class="form-group">
+									<label for="exampleFormControlSelectTypeOf">Заглавие</label>
+									<input type="text" name="title" class="form-control" placeholder="Заглавие">
+								</div>
+
+								<div class="form-group">
+									<label for="exampleFormControlSelectModel">Имейл</label>
+									<input type="text" name="email" class="form-control" placeholder="Имейл">
+								</div>
+
+								<div class="form-group">
+									<label for="exampleFormControlSelectEngine">Запитване</label>
+									<textarea class="form-control" name="question" id="exampleFormControlTextarea1" rows="3"></textarea>
+								</div>
+
+
+								<button form="form1" value="Submit" class="btn btn-primary btn-block">Изпрати запитване</button>
+
+							</div>
+						</div>
+					</div>
+				</form>
 			</div>
 		</section>
 
-
-		<section class="reviews">
-
-			<div class="container container-survey" id="contact">
-				<form action="{{ path('contact_create') }}" method="post" id="form1">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card bg-light">
-								<div class="card-body">
-									<div class="card-header">Контактна форма</div>
-									<div class="form-group">
-										<label for="exampleFormControlSelectTypeOf">Заглавие</label>
-										<input type="text" name="title" class="form-control" placeholder="Заглавие">
-									</div>
-
-									<div class="form-group">
-										<label for="exampleFormControlSelectModel">Имейл</label>
-										<input type="text" name="email" class="form-control" placeholder="Имейл">
-									</div>
-
-									<div class="form-group">
-										<label for="exampleFormControlSelectEngine">Запитване</label>
-										<textarea class="form-control" name="question" id="exampleFormControlTextarea1" rows="3"></textarea>
-									</div>
-
-
-									<button form="form1" value="Submit" class="btn btn-primary btn-block">Изпрати запитване</button>
-
-								</div>
-							</div>
-						</div>
-					</form>
+		{% if app.session.has('notice') %}
+			<div id="notice-home">
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					{{ app.session.get('notice') }}
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 				</div>
-			</section>
-
-			{% if app.session.has('notice') %}
-				<div id="notice-home">
-					<div class="alert alert-success alert-dismissible fade show" role="alert">
-						{{ app.session.get('notice') }}
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-				</div>
+			</div>
 
 
-			{% endif %}
+		{% endif %}
 
-		</div>
-	{% endblock %}
+	</div>
+{% endblock %}
