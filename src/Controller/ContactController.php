@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Crypto\SMimeSigner;
 use Symfony\Component\Mime\Email;
 
 class ContactController extends AbstractController
@@ -18,14 +19,21 @@ class ContactController extends AbstractController
     public function index(MailerInterface $mailer, Request $request): Response
     {
         $session = new Session();
- 
+        $signer = new SMimeSigner(
+            $this->getParameter('kernel.project_dir'). DIRECTORY_SEPARATOR . 'certificate.crt',
+            $this->getParameter('kernel.project_dir'). DIRECTORY_SEPARATOR . 'privatekey.key'
+        );
+
         $email = (new Email())
-            ->from($request->request->get('email', ''))
+            ->from('sbcarsst@sbcars.store')
             ->to('stefan.brojdenov@gmail.com')
-            ->subject($request->request->get('title', ''))
-            ->text($request->request->get('question', ''));
+            ->subject($request->request->get('title', '') . $request->request->get('email', ''))
+            ->text($request->request->get('question', '') . $request->request->get('name', '') . $request->request->get('phone', ''));
+
+        $signedEmail = $signer->sign($email);
+
            
-        $mailer->send($email);
+        $mailer->send($signedEmail);
 
         $session->set('notice', 'Благодаря за запитването!');
 
